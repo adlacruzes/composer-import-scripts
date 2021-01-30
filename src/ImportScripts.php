@@ -81,7 +81,10 @@ class ImportScripts
                     try {
                         $json = new JsonFile($include);
                         if (true === @$json->validateSchema(JsonFile::STRICT_SCHEMA, __DIR__ . '/import-scripts-schema.json')) {
-                            $scripts = array_merge($scripts, $json->read()['scripts']);
+                            $scripts = array_merge(
+                                $scripts,
+                                $this->parseScriptsToComposerFormat($json->read()['scripts'])
+                            );
                         }
                     } catch (ParsingException | JsonValidationException | RuntimeException $e) {
                         if (false === $allowFailures) {
@@ -108,5 +111,20 @@ class ImportScripts
         }
 
         return true;
+    }
+
+    /**
+     * @param array<string, string> $scripts
+     * @return array<string, array<int, string>>
+     */
+    private function parseScriptsToComposerFormat(array $scripts): array
+    {
+        $parsed = [];
+
+        foreach ($scripts as $name => $script) {
+            $parsed[$name] = [$script];
+        }
+
+        return $parsed;
     }
 }

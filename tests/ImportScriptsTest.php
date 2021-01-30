@@ -268,9 +268,9 @@ class ImportScriptsTest extends TestCase
             ->method('setScripts')
             ->with(
                 [
-                    'one' => 'echo one',
-                    'two' => 'echo two',
-                    'three' => 'echo three',
+                    'one' => ['echo one'],
+                    'two' => ['echo two'],
+                    'three' => ['echo three'],
                 ]
             );
 
@@ -280,7 +280,7 @@ class ImportScriptsTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testImportMultipleScriptsWithComposerScripts(): void
+    public function testImportAndOverrideMultipleScriptsWithComposerScripts(): void
     {
         $this->package
             ->expects($this->once())
@@ -297,7 +297,7 @@ class ImportScriptsTest extends TestCase
             ->expects($this->once())
             ->method('getScripts')
             ->willReturn([
-                'scriptFrom' => 'composer',
+                'scriptFrom' => ['composer'],
             ]);
 
         $this->package
@@ -305,10 +305,10 @@ class ImportScriptsTest extends TestCase
             ->method('setScripts')
             ->with(
                 [
-                    'one' => 'echo one',
-                    'two' => 'echo two',
-                    'three' => 'echo three',
-                    'scriptFrom' => 'composer',
+                    'one' => ['echo one'],
+                    'two' => ['echo two'],
+                    'three' => ['echo three'],
+                    'scriptFrom' => ['composer'],
                 ]
             );
 
@@ -336,7 +336,7 @@ class ImportScriptsTest extends TestCase
             ->expects($this->once())
             ->method('getScripts')
             ->willReturn([
-                'one' => 'echo one from composer scripts',
+                'one' => ['echo one from composer scripts'],
             ]);
 
         $this->package
@@ -344,9 +344,9 @@ class ImportScriptsTest extends TestCase
             ->method('setScripts')
             ->with(
                 [
-                    'one' => 'echo one from composer scripts',
-                    'two' => 'echo two',
-                    'three' => 'echo three',
+                    'one' => ['echo one from composer scripts'],
+                    'two' => ['echo two'],
+                    'three' => ['echo three'],
                 ]
             );
 
