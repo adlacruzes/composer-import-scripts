@@ -1,0 +1,58 @@
+{
+    "name": "adlacruzes/composer-import-scripts",
+    "type": "composer-plugin",
+    "description": "Composer plugin to import composer scripts from sources",
+    "keywords": [
+        "composer",
+        "plugin",
+        "scripts"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrés De la Cruz Escrig"
+        }
+    ],
+    "require": {
+        "php": "^7.2 || ^8.0",
+        "composer-plugin-api": "^1.0"
+    },
+    "require-dev": {
+        "composer/composer": "^1.0",
+        "ergebnis/composer-normalize": "^2.13.2",
+        "friendsofphp/php-cs-fixer": "^2.18.2",
+        "maglnet/composer-require-checker": "^2.1",
+        "phpstan/phpstan": "^0.12.70",
+        "phpunit/phpunit": "^8 || ^9"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Adlacruzes\\Composer\\ImportScripts\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Adlacruzes\\Composer\\ImportScripts\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "ci": [
+            "@composer validate",
+            "@composer-normalize",
+            "@php-cs-fixer",
+            "@phpstan",
+            "@phpunit"
+        ],
+        "composer-normalize": "@composer normalize --dry-run",
+        "fix-style": [
+            "vendor/bin/php-cs-fixer fix --diff --verbose --diff-format=udiff --show-progress=none --using-cache=yes --ansi"
+        ],
+        "php-cs-fixer": "vendor/bin/php-cs-fixer fix --dry-run --diff --verbose --diff-format=udiff --show-progress=none --using-cache=yes --ansi",
+        "phpstan": "vendor/bin/phpstan analyse --memory-limit=256M --no-progress --ansi",
+        "phpunit": "vendor/bin/phpunit"
+    }
+}

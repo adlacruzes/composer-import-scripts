@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+
+  app:
+
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+
+    hostname: composer-import-scripts
+
+    image: composer-import-scripts
+
+    stdin_open: true
+
+    volumes:
+      - .:/app
+
+    working_dir: /app
