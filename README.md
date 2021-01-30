@@ -1,6 +1,7 @@
 # Composer import scripts
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
+![Github actions](https://github.com/adlacruzes/composer-import-scripts/workflows/Continuous%20Integration/badge.svg?branch=main)
 
 Composer import scripts is a plugin to import composer scripts from other files at runtime.
 
