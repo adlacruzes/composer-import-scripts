@@ -31,10 +31,7 @@ jobs:
           php-version: "${{ matrix.php-version }}"
           tools: composer:v1
 
-      - name: "Install lowest dependencies"
-        run: "composer update --prefer-lowest"
-
-      - name: "Install highest dependencies"
+      - name: "Install dependencies"
         run: "composer update"
 
       - name: "Run CI"
