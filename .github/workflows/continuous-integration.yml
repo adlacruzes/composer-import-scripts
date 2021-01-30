@@ -1,0 +1,41 @@
+name: "Continuous Integration"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  tests:
+    name: "CI"
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        php-version:
+          - "7.2"
+          - "7.3"
+          - "7.4"
+          - "8.0"
+        os: [ ubuntu-latest ]
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+          tools: composer:v1
+
+      - name: "Install lowest dependencies"
+        run: "composer update --prefer-lowest"
+
+      - name: "Install highest dependencies"
+        run: "composer update"
+
+      - name: "Run CI"
+        run: "composer run ci"
