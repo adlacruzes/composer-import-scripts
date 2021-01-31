@@ -7,6 +7,8 @@ Composer import scripts is a plugin to import composer scripts from other files 
 
 I needed a simple way to import scripts and unify commands across multiple libraries. If you need a more powerful tool, you can look at the excellent [composer-merge-plugin](https://github.com/wikimedia/composer-merge-plugin). 
 
+Imported commands have to be invoked with `composer run`.
+
 ## Installation
 
 ```sh
@@ -20,8 +22,8 @@ composer require adlacruzes/composer-import-scripts
     "extra": {
         "import-scripts": {
             "include": [
-                "file.json",
-                "file.json"
+                "file1.json",
+                "file2.json"
             ],
             "allow_failures": false,
             "override": true
@@ -32,21 +34,24 @@ composer require adlacruzes/composer-import-scripts
 
 ## Configuration
 
-### include `required`
+### include
+ - `required`
 
 `include` setting is a list of files to import. These files need to be valid JSON according to the [import scripts schema](#json-schema).
 
-### allow_failures `optional` `default: false`
+### allow_failures
+ - `optional`
+ - `default: false`
 
 `allow_failures` is a setting that controls errors from the plugin. If set to `true` the following file errors will be ignored and zero scripts will be imported from these files:
  - Invalid JSON schema
  - Invalid file
 
-### override `optional` `default: true`
+### override
+ - `optional`
+ - `default: true`
 
 When `override` is set to `true` the scripts from the `include` setting will override the scripts with the same name defined in `composer.json` 
-
-if set to `false` 
 
 ## JSON schema
 
