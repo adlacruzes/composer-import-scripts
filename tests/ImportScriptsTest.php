@@ -219,6 +219,36 @@ class ImportScriptsTest extends TestCase
     /**
      * @throws Exception
      */
+    public function testIncludeInvalidNestedScriptsWithAllowFailuresToFalse(): void
+    {
+        $this->expectException(JsonValidationException::class);
+
+        $this->package
+            ->expects($this->once())
+            ->method('getExtra')
+            ->willReturn([
+                'import-scripts' => [
+                    'allow_failures' => false,
+                    'include' => [
+                        __DIR__ . '/Fixtures/invalidNestedScripts.json',
+                    ],
+                ],
+            ]);
+
+        $this->package
+            ->expects($this->never())
+            ->method('getScripts');
+
+        $this->package
+            ->expects($this->never())
+            ->method('setScripts');
+
+        $this->plugin->execute();
+    }
+
+    /**
+     * @throws Exception
+     */
     public function testValidSchemaWithEmptyScripts(): void
     {
         $this->package
