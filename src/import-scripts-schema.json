@@ -5,7 +5,10 @@
         "scripts": {
             "type": [
                 "object"
-            ]
+            ],
+            "additionalProperties": {
+                "type": ["string", "array"]
+            }
         }
     },
     "required": [
