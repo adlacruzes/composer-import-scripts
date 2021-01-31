@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Adlacruzes\Composer\ImportScripts\Tests;
 
 use Adlacruzes\Composer\ImportScripts\ImportScripts;
+use Composer\Composer;
+use Composer\Config;
+use Composer\IO\IOInterface;
 use Composer\Json\JsonValidationException;
 use Composer\Package\RootPackage;
 use Composer\Package\RootPackageInterface;
@@ -15,6 +18,16 @@ use Seld\JsonLint\ParsingException;
 
 class ImportScriptsTest extends TestCase
 {
+    /**
+     * @var Composer & MockObject
+     */
+    private $composer;
+
+    /**
+     * @var IOInterface & MockObject
+     */
+    private $io;
+
     /**
      * @var RootPackage & MockObject
      */
@@ -27,10 +40,17 @@ class ImportScriptsTest extends TestCase
 
     protected function setUp(): void
     {
+        $this->composer = $this->createMock(Composer::class);
+        $this->io = $this->createMock(IOInterface::class);
         $this->package = $this->createMock(RootPackage::class);
 
+        $this->composer
+            ->method('getConfig')
+            ->willReturn(new Config());
+
         $this->plugin = new ImportScripts(
-            $this->package
+            $this->composer,
+            $this->io
         );
     }
 
@@ -39,6 +59,8 @@ class ImportScriptsTest extends TestCase
      */
     public function testPackageWithoutSetScriptsMethod(): void
     {
+        $composer = $this->createMock(Composer::class);
+        $io = $this->createMock(IOInterface::class);
         $package = $this->createMock(RootPackageInterface::class);
 
         $package
@@ -49,8 +71,13 @@ class ImportScriptsTest extends TestCase
             ->expects($this->never())
             ->method('getScripts');
 
+        $composer
+            ->method('getPackage')
+            ->willReturn($package);
+
         (new ImportScripts(
-            $package
+            $composer,
+            $io
         ))->execute();
     }
 
@@ -73,6 +100,10 @@ class ImportScriptsTest extends TestCase
         $this->package
             ->expects($this->never())
             ->method('setScripts');
+
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
 
         $this->plugin->execute();
     }
@@ -98,6 +129,10 @@ class ImportScriptsTest extends TestCase
         $this->package
             ->expects($this->never())
             ->method('setScripts');
+
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
 
         $this->plugin->execute();
     }
@@ -128,6 +163,10 @@ class ImportScriptsTest extends TestCase
             ->expects($this->never())
             ->method('setScripts');
 
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
+
         $this->plugin->execute();
     }
 
@@ -155,6 +194,10 @@ class ImportScriptsTest extends TestCase
         $this->package
             ->expects($this->never())
             ->method('setScripts');
+
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
 
         $this->plugin->execute();
     }
@@ -185,6 +228,10 @@ class ImportScriptsTest extends TestCase
             ->expects($this->never())
             ->method('setScripts');
 
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
+
         $this->plugin->execute();
     }
 
@@ -212,6 +259,10 @@ class ImportScriptsTest extends TestCase
         $this->package
             ->expects($this->never())
             ->method('setScripts');
+
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
 
         $this->plugin->execute();
     }
@@ -243,6 +294,10 @@ class ImportScriptsTest extends TestCase
             ->expects($this->never())
             ->method('setScripts');
 
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
+
         $this->plugin->execute();
     }
 
@@ -269,6 +324,10 @@ class ImportScriptsTest extends TestCase
         $this->package
             ->expects($this->never())
             ->method('setScripts');
+
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
 
         $this->plugin->execute();
     }
@@ -304,6 +363,10 @@ class ImportScriptsTest extends TestCase
                     'three' => ['echo three'],
                 ]
             );
+
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
 
         $this->plugin->execute();
     }
@@ -343,6 +406,10 @@ class ImportScriptsTest extends TestCase
                 ]
             );
 
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
+
         $this->plugin->execute();
     }
 
@@ -380,6 +447,10 @@ class ImportScriptsTest extends TestCase
                     'three' => ['echo three'],
                 ]
             );
+
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
 
         $this->plugin->execute();
     }
@@ -422,6 +493,10 @@ class ImportScriptsTest extends TestCase
                     ],
                 ]
             );
+
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
 
         $this->plugin->execute();
     }

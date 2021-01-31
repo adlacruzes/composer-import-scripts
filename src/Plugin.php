@@ -64,7 +64,8 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     public function onPreCommandRun(): void
     {
         (new ImportScripts(
-            $this->composer->getPackage()
+            $this->composer,
+            $this->io
         ))->execute();
     }
 }

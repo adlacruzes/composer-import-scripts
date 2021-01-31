@@ -4,23 +4,32 @@ declare(strict_types=1);
 
 namespace Adlacruzes\Composer\ImportScripts;
 
+use Composer\Composer;
+use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
 use Composer\Json\JsonValidationException;
-use Composer\Package\RootPackageInterface;
+use Composer\Util\RemoteFilesystem;
 use RuntimeException;
 use Seld\JsonLint\ParsingException;
 
 class ImportScripts
 {
     /**
-     * @var RootPackageInterface
+     * @var Composer
      */
-    private $package;
+    private $composer;
+
+    /**
+     * @var IOInterface
+     */
+    private $io;
 
     public function __construct(
-        RootPackageInterface $package
+        Composer $composer,
+        IOInterface $io
     ) {
-        $this->package = $package;
+        $this->composer = $composer;
+        $this->io = $io;
     }
 
     /**
@@ -29,23 +38,25 @@ class ImportScripts
      */
     public function execute(): void
     {
-        if (false === method_exists($this->package, 'setScripts')) {
+        $package = $this->composer->getPackage();
+
+        if (false === method_exists($package, 'setScripts')) {
             return;
         }
 
-        $extra = $this->package->getExtra();
+        $extra = $package->getExtra();
 
         $allowFailures = $this->getAllowFailures($extra);
 
         $scripts = $this->getScriptsFromExtra($extra, $allowFailures);
 
         if (false === empty($scripts)) {
-            $composerScripts = $this->package->getScripts();
+            $composerScripts = $package->getScripts();
 
             if (true === $this->getOverrideFromExtra($extra)) {
-                $this->package->setScripts(array_merge($composerScripts, $scripts));
+                $package->setScripts(array_merge($composerScripts, $scripts));
             } else {
-                $this->package->setScripts(array_merge($scripts, $composerScripts));
+                $package->setScripts(array_merge($scripts, $composerScripts));
             }
         }
     }
@@ -77,11 +88,13 @@ class ImportScripts
     {
         $scripts = [];
 
+        $httpDownloader = $this->getHttpDownloader();
+
         if (isset($extra['import-scripts']['include'])) {
             if (is_array($extra['import-scripts']['include'])) {
                 foreach ($extra['import-scripts']['include'] as $include) {
                     try {
-                        $json = new JsonFile($include);
+                        $json = new JsonFile($include, $httpDownloader);
                         if (true === @$json->validateSchema(JsonFile::STRICT_SCHEMA, __DIR__ . '/import-scripts-schema.json')) {
                             $scripts = array_merge(
                                 $scripts,
@@ -132,5 +145,18 @@ class ImportScripts
         }
 
         return $parsed;
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getHttpDownloader()
+    {
+        if (class_exists('Composer\Util\HttpDownloader')) {
+            return new \Composer\Util\HttpDownloader($this->io, $this->composer->getConfig());
+        }
+
+        // Composer v1 compatibility
+        return new RemoteFilesystem($this->io, $this->composer->getConfig());
     }
 }
