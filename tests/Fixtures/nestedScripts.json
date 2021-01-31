@@ -1,0 +1,12 @@
+{
+    "something": "else",
+    "scripts": {
+        "one": "echo one",
+        "two": "echo two",
+        "three": "echo three",
+        "other": [
+            "echo four",
+            "echo five"
+        ]
+    }
+}

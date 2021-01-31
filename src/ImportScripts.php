@@ -122,7 +122,11 @@ class ImportScripts
         $parsed = [];
 
         foreach ($scripts as $name => $script) {
-            $parsed[$name] = [$script];
+            if (is_array($script)) {
+                $parsed[$name] = $script;
+            } else {
+                $parsed[$name] = [$script];
+            }
         }
 
         return $parsed;

@@ -352,4 +352,46 @@ class ImportScriptsTest extends TestCase
 
         $this->plugin->execute();
     }
+
+    /**
+     * @throws Exception
+     */
+    public function testImportAndOverrideNestedScriptsWithComposerScripts(): void
+    {
+        $this->package
+            ->expects($this->once())
+            ->method('getExtra')
+            ->willReturn([
+                'import-scripts' => [
+                    'include' => [
+                        __DIR__ . '/Fixtures/nestedScripts.json',
+                    ],
+                    'override' => true,
+                ],
+            ]);
+
+        $this->package
+            ->expects($this->once())
+            ->method('getScripts')
+            ->willReturn([
+                'one' => ['echo one from composer scripts'],
+            ]);
+
+        $this->package
+            ->expects($this->once())
+            ->method('setScripts')
+            ->with(
+                [
+                    'one' => ['echo one'],
+                    'two' => ['echo two'],
+                    'three' => ['echo three'],
+                    'other' => [
+                        'echo four',
+                        'echo five',
+                    ],
+                ]
+            );
+
+        $this->plugin->execute();
+    }
 }
