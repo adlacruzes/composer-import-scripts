@@ -70,6 +70,7 @@ class ImportScripts
      * @return array<mixed>
      * @throws JsonValidationException
      * @throws RuntimeException
+     * @throws ParsingException
      */
     private function getScriptsFromExtra(array $extra, bool $allowFailures): array
     {
