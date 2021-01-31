@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Adlacruzes\Composer\ImportScripts\Tests;
 
 use Adlacruzes\Composer\ImportScripts\ImportScripts;
+use Composer\Json\JsonValidationException;
 use Composer\Package\RootPackage;
 use Composer\Package\RootPackageInterface;
 use Exception;
@@ -163,7 +164,7 @@ class ImportScriptsTest extends TestCase
      */
     public function testIncludeInvalidSchemaWithAllowFailuresToFalse(): void
     {
-        $this->expectException(ParsingException::class);
+        $this->expectException(JsonValidationException::class);
 
         $this->package
             ->expects($this->once())
@@ -171,7 +172,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn([
                 'import-scripts' => [
                     'include' => [
-                        __DIR__ . '/Fixtures/invalidSchema.json.json',
+                        __DIR__ . '/Fixtures/invalidSchema.json',
                     ],
                 ],
             ]);
