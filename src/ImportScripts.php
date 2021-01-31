@@ -25,6 +25,7 @@ class ImportScripts
 
     /**
      * @throws JsonValidationException
+     * @throws ParsingException
      */
     public function execute(): void
     {
@@ -115,7 +116,7 @@ class ImportScripts
     }
 
     /**
-     * @param array<string, string> $scripts
+     * @param array<string, mixed> $scripts
      * @return array<string, array<int, string>>
      */
     private function parseScriptsToComposerFormat(array $scripts): array
