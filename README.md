@@ -65,7 +65,10 @@ This is the scheme files must adapt.
         "scripts": {
             "type": [
                 "object"
-            ]
+            ],
+            "additionalProperties": {
+                "type": ["string", "array"]
+            }
         }
     },
     "required": [
@@ -81,7 +84,11 @@ An example of this schema:
     "scripts": {
         "one": "echo one",
         "two": "echo two",
-        "three": "echo three"
+        "three": "echo three",
+        "other": [
+            "echo four",
+            "echo five"
+        ]
     }
 }
 ```
