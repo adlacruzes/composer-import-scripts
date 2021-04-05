@@ -75,6 +75,10 @@ class ImportScriptsTest extends TestCase
             ->method('getPackage')
             ->willReturn($package);
 
+        $io
+            ->expects($this->once())
+            ->method('write');
+
         (new ImportScripts(
             $composer,
             $io
@@ -105,6 +109,10 @@ class ImportScriptsTest extends TestCase
             ->method('getPackage')
             ->willReturn($this->package);
 
+        $this->io
+            ->expects($this->never())
+            ->method('write');
+
         $this->plugin->execute();
     }
 
@@ -133,6 +141,10 @@ class ImportScriptsTest extends TestCase
         $this->composer
             ->method('getPackage')
             ->willReturn($this->package);
+
+        $this->io
+            ->expects($this->never())
+            ->method('write');
 
         $this->plugin->execute();
     }
@@ -167,6 +179,10 @@ class ImportScriptsTest extends TestCase
             ->method('getPackage')
             ->willReturn($this->package);
 
+        $this->io
+            ->expects($this->never())
+            ->method('write');
+
         $this->plugin->execute();
     }
 
@@ -198,6 +214,10 @@ class ImportScriptsTest extends TestCase
         $this->composer
             ->method('getPackage')
             ->willReturn($this->package);
+
+        $this->io
+            ->expects($this->never())
+            ->method('write');
 
         $this->plugin->execute();
     }
@@ -232,6 +252,10 @@ class ImportScriptsTest extends TestCase
             ->method('getPackage')
             ->willReturn($this->package);
 
+        $this->io
+            ->expects($this->never())
+            ->method('write');
+
         $this->plugin->execute();
     }
 
@@ -263,6 +287,10 @@ class ImportScriptsTest extends TestCase
         $this->composer
             ->method('getPackage')
             ->willReturn($this->package);
+
+        $this->io
+            ->expects($this->never())
+            ->method('write');
 
         $this->plugin->execute();
     }
@@ -298,6 +326,10 @@ class ImportScriptsTest extends TestCase
             ->method('getPackage')
             ->willReturn($this->package);
 
+        $this->io
+            ->expects($this->never())
+            ->method('write');
+
         $this->plugin->execute();
     }
 
@@ -328,6 +360,10 @@ class ImportScriptsTest extends TestCase
         $this->composer
             ->method('getPackage')
             ->willReturn($this->package);
+
+        $this->io
+            ->expects($this->once())
+            ->method('write');
 
         $this->plugin->execute();
     }
@@ -367,6 +403,10 @@ class ImportScriptsTest extends TestCase
         $this->composer
             ->method('getPackage')
             ->willReturn($this->package);
+
+        $this->io
+            ->expects($this->once())
+            ->method('write');
 
         $this->plugin->execute();
     }
@@ -410,6 +450,10 @@ class ImportScriptsTest extends TestCase
             ->method('getPackage')
             ->willReturn($this->package);
 
+        $this->io
+            ->expects($this->once())
+            ->method('write');
+
         $this->plugin->execute();
     }
 
@@ -451,6 +495,10 @@ class ImportScriptsTest extends TestCase
         $this->composer
             ->method('getPackage')
             ->willReturn($this->package);
+
+        $this->io
+            ->expects($this->once())
+            ->method('write');
 
         $this->plugin->execute();
     }
@@ -497,6 +545,10 @@ class ImportScriptsTest extends TestCase
         $this->composer
             ->method('getPackage')
             ->willReturn($this->package);
+
+        $this->io
+            ->expects($this->once())
+            ->method('write');
 
         $this->plugin->execute();
     }

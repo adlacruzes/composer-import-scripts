@@ -41,6 +41,8 @@ class ImportScripts
         $package = $this->composer->getPackage();
 
         if (false === method_exists($package, 'setScripts')) {
+            $this->io->write('Skipping importing scripts', true, IOInterface::VERY_VERBOSE);
+
             return;
         }
 
@@ -96,6 +98,7 @@ class ImportScripts
                     try {
                         $json = new JsonFile($include, $httpDownloader);
                         if (true === @$json->validateSchema(JsonFile::STRICT_SCHEMA, __DIR__ . '/import-scripts-schema.json')) {
+                            $this->io->write("Importing script: $include", true, IOInterface::VERY_VERBOSE);
                             $scripts = array_merge(
                                 $scripts,
                                 $this->parseScriptsToComposerFormat($json->read()['scripts'])
