@@ -52,7 +52,7 @@ class ImportScripts
 
         $scripts = $this->getScriptsFromExtra($extra, $allowFailures);
 
-        if (false === empty($scripts)) {
+        if (0 !== count($scripts)) {
             $composerScripts = $package->getScripts();
 
             if (true === $this->getOverrideFromExtra($extra)) {

@@ -64,11 +64,11 @@ class ImportScriptsTest extends TestCase
         $package = $this->createMock(RootPackageInterface::class);
 
         $package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getExtra');
 
         $package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getScripts');
 
         $composer
@@ -76,7 +76,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($package);
 
         $io
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('write');
 
         (new ImportScripts(
@@ -91,18 +91,18 @@ class ImportScriptsTest extends TestCase
     public function testInvalidExtraComposerShouldNotThrowException(): void
     {
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'invalid' => 'extra',
             ]);
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getScripts');
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('setScripts');
 
         $this->composer
@@ -110,7 +110,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('write');
 
         $this->plugin->execute();
@@ -122,7 +122,7 @@ class ImportScriptsTest extends TestCase
     public function testNoIncludesShouldNotThrowException(): void
     {
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -131,11 +131,11 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getScripts');
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('setScripts');
 
         $this->composer
@@ -143,7 +143,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('write');
 
         $this->plugin->execute();
@@ -157,7 +157,7 @@ class ImportScriptsTest extends TestCase
         $this->expectException(ParsingException::class);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -168,11 +168,11 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getScripts');
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('setScripts');
 
         $this->composer
@@ -180,7 +180,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('write');
 
         $this->plugin->execute();
@@ -192,7 +192,7 @@ class ImportScriptsTest extends TestCase
     public function testIncludeNotFoundWithAllowFailuresToTrue(): void
     {
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -204,11 +204,11 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getScripts');
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('setScripts');
 
         $this->composer
@@ -216,7 +216,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('write');
 
         $this->plugin->execute();
@@ -230,7 +230,7 @@ class ImportScriptsTest extends TestCase
         $this->expectException(JsonValidationException::class);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -241,11 +241,11 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getScripts');
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('setScripts');
 
         $this->composer
@@ -253,7 +253,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('write');
 
         $this->plugin->execute();
@@ -265,7 +265,7 @@ class ImportScriptsTest extends TestCase
     public function testIncludeInvalidSchemaWithAllowFailuresToTrue(): void
     {
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -277,11 +277,11 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getScripts');
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('setScripts');
 
         $this->composer
@@ -289,7 +289,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('write');
 
         $this->plugin->execute();
@@ -303,7 +303,7 @@ class ImportScriptsTest extends TestCase
         $this->expectException(JsonValidationException::class);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -315,11 +315,11 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getScripts');
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('setScripts');
 
         $this->composer
@@ -327,7 +327,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('write');
 
         $this->plugin->execute();
@@ -339,7 +339,7 @@ class ImportScriptsTest extends TestCase
     public function testValidSchemaWithEmptyScripts(): void
     {
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -350,11 +350,11 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getScripts');
 
         $this->package
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('setScripts');
 
         $this->composer
@@ -362,7 +362,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('write');
 
         $this->plugin->execute();
@@ -374,7 +374,7 @@ class ImportScriptsTest extends TestCase
     public function testImportMultipleScriptsWithNoComposerScripts(): void
     {
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -385,12 +385,12 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getScripts')
             ->willReturn([]);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('setScripts')
             ->with(
                 [
@@ -405,7 +405,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('write');
 
         $this->plugin->execute();
@@ -417,7 +417,7 @@ class ImportScriptsTest extends TestCase
     public function testImportAndOverrideMultipleScriptsWithComposerScripts(): void
     {
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -428,14 +428,14 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getScripts')
             ->willReturn([
                 'scriptFrom' => ['composer'],
             ]);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('setScripts')
             ->with(
                 [
@@ -451,7 +451,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('write');
 
         $this->plugin->execute();
@@ -463,7 +463,7 @@ class ImportScriptsTest extends TestCase
     public function testImportAndNotOverrideMultipleScriptsWithComposerScripts(): void
     {
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -475,14 +475,14 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getScripts')
             ->willReturn([
                 'one' => ['echo one from composer scripts'],
             ]);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('setScripts')
             ->with(
                 [
@@ -497,7 +497,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('write');
 
         $this->plugin->execute();
@@ -509,7 +509,7 @@ class ImportScriptsTest extends TestCase
     public function testImportAndOverrideNestedScriptsWithComposerScripts(): void
     {
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -521,14 +521,14 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getScripts')
             ->willReturn([
                 'one' => ['echo one from composer scripts'],
             ]);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('setScripts')
             ->with(
                 [
@@ -547,7 +547,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('write');
 
         $this->plugin->execute();
@@ -559,7 +559,7 @@ class ImportScriptsTest extends TestCase
     public function testImportAndNotOverrideMultipleIncludesAndScriptsWithComposerScripts(): void
     {
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getExtra')
             ->willReturn([
                 'import-scripts' => [
@@ -572,14 +572,14 @@ class ImportScriptsTest extends TestCase
             ]);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getScripts')
             ->willReturn([
                 'one' => ['echo one from composer scripts'],
             ]);
 
         $this->package
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('setScripts')
             ->with(
                 [
@@ -596,7 +596,7 @@ class ImportScriptsTest extends TestCase
             ->willReturn($this->package);
 
         $this->io
-            ->expects($this->exactly(2))
+            ->expects(self::exactly(2))
             ->method('write');
 
         $this->plugin->execute();
