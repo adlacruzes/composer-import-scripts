@@ -1,0 +1,8 @@
+{
+    "something": "else",
+    "scripts": {
+        "three": "echo new three",
+        "four": "echo four",
+        "five": "echo five"
+    }
+}

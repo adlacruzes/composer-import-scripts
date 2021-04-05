@@ -552,4 +552,53 @@ class ImportScriptsTest extends TestCase
 
         $this->plugin->execute();
     }
+
+    /**
+     * @throws Exception
+     */
+    public function testImportAndNotOverrideMultipleIncludesAndScriptsWithComposerScripts(): void
+    {
+        $this->package
+            ->expects($this->once())
+            ->method('getExtra')
+            ->willReturn([
+                'import-scripts' => [
+                    'include' => [
+                        __DIR__ . '/Fixtures/multipleScripts.json',
+                        __DIR__ . '/Fixtures/moreMultipleScripts.json',
+                    ],
+                    'override' => false,
+                ],
+            ]);
+
+        $this->package
+            ->expects($this->once())
+            ->method('getScripts')
+            ->willReturn([
+                'one' => ['echo one from composer scripts'],
+            ]);
+
+        $this->package
+            ->expects($this->once())
+            ->method('setScripts')
+            ->with(
+                [
+                    'one' => ['echo one from composer scripts'],
+                    'two' => ['echo two'],
+                    'three' => ['echo new three'],
+                    'four' => ['echo four'],
+                    'five' => ['echo five'],
+                ]
+            );
+
+        $this->composer
+            ->method('getPackage')
+            ->willReturn($this->package);
+
+        $this->io
+            ->expects($this->exactly(2))
+            ->method('write');
+
+        $this->plugin->execute();
+    }
 }
