@@ -1,6 +1,7 @@
 # Composer import scripts
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
+[![Packagist](https://img.shields.io/packagist/v/adlacruzes/composer-import-scripts?style=flat-square)](https://packagist.org/packages/adlacruzes/composer-import-scripts)
 ![Github actions](https://github.com/adlacruzes/composer-import-scripts/workflows/Continuous%20Integration/badge.svg?branch=main)
 
 Composer import scripts is a plugin to import composer scripts from files/URLs at runtime.
@@ -8,6 +9,18 @@ Composer import scripts is a plugin to import composer scripts from files/URLs a
 I needed a simple way to import scripts and unify commands across multiple libraries. If you need a more powerful tool, you can look at the excellent [composer-merge-plugin](https://github.com/wikimedia/composer-merge-plugin). 
 
 Imported commands have to be invoked with `composer run`.
+
+### Can this plugin import scripts from...
+ - **other composer.json files?** Yes
+ - **public URLs?** Yes
+
+## Table of Contents
+- [Installation](#installation)
+- [Configuration](#configuration)
+    - [include](#include)
+    - [allow_failures](#allow_failures)
+    - [override](#override)
+- [JSON schema](#json-schema)
 
 ## Installation
 
