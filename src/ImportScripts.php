@@ -97,7 +97,7 @@ class ImportScripts
                 foreach ($extra['import-scripts']['include'] as $include) {
                     try {
                         $json = new JsonFile($include, $httpDownloader);
-                        if (true === @$json->validateSchema(JsonFile::STRICT_SCHEMA, __DIR__ . '/import-scripts-schema.json')) {
+                        if (true === @$json->validateSchema($this->getSchemaValidationCriteria(), __DIR__ . '/import-scripts-schema.json')) {
                             $this->io->write("Importing script: $include", true, IOInterface::VERY_VERBOSE);
                             $scripts = array_merge(
                                 $scripts,
@@ -161,5 +161,15 @@ class ImportScripts
 
         // Composer v1 compatibility
         return new RemoteFilesystem($this->io, $this->composer->getConfig());
+    }
+
+    private function getSchemaValidationCriteria(): int
+    {
+        // https://github.com/composer/composer/pull/9912
+        if ('2.1.0' === Composer::getVersion()) {
+            return JsonFile::LAX_SCHEMA;
+        }
+
+        return JsonFile::STRICT_SCHEMA;
     }
 }
