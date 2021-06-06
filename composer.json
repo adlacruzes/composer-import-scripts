@@ -20,7 +20,7 @@
     "require-dev": {
         "composer/composer": "^1.9 || ^2.0",
         "ergebnis/composer-normalize": "^2.14.0",
-        "friendsofphp/php-cs-fixer": "^v3.0.0",
+        "friendsofphp/php-cs-fixer": "v2.19.0 || ^v3.0.0",
         "phpstan/phpstan": "^0.12.88",
         "phpstan/phpstan-phpunit": "^0.12.19",
         "phpstan/phpstan-strict-rules": "^0.12.9",
