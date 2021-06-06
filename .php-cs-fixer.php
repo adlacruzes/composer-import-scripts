@@ -1,6 +1,6 @@
 <?php
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
     ->setUsingCache(false)
     ->setRules([
@@ -23,7 +23,7 @@ return PhpCsFixer\Config::create()
         'random_api_migration' => true,
         'single_line_throw' => true,
         'strict_param' => true,
-        'trailing_comma_in_multiline_array' => true,
+        'trailing_comma_in_multiline' => true,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
