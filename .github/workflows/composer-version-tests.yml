@@ -1,0 +1,43 @@
+name: "Composer version tests"
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  push:
+    paths-ignore:
+      - '**.md'
+    branches:
+      - "main"
+
+jobs:
+  tests:
+    name: "Composer versions"
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        composer-version:
+          - "1.9.0"
+          - "1.10.22"
+          - "2.0.0"
+          - "2.1.0"
+          - "2.1.1"
+        os: [ ubuntu-18.04 ]
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "7.2"
+
+      - name: "Install dependencies"
+        run: "composer require --dev composer/composer:${{ matrix.composer-version }}"
+
+      - name: "Run tests"
+        run: "composer run phpunit"
