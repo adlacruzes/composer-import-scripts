@@ -63,6 +63,10 @@ class ImportScriptsTest extends TestCase
         $io = $this->createMock(IOInterface::class);
         $package = $this->createMock(RootPackageInterface::class);
 
+        if (method_exists($package, 'setScripts')) {
+            self::markTestSkipped('RootPackageInterface already has setScripts method');
+        }
+
         $package
             ->expects(self::never())
             ->method('getExtra');
