@@ -1,0 +1,38 @@
+name: "Windows"
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  push:
+    paths-ignore:
+      - '**.md'
+    branches:
+      - "main"
+
+jobs:
+  tests:
+    name: "Windows"
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        php-version:
+          - "7.2"
+        os: [ windows-latest ]
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+
+      - name: "Install dependencies"
+        run: "composer update"
+
+      - name: "Run tests"
+        run: "composer run phpunit"
