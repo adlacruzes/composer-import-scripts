@@ -1,4 +1,4 @@
-name: "Continuous Integration"
+name: "Nightly Build"
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   tests:
-    name: "CI"
+    name: "Nightly Build"
 
     runs-on: ${{ matrix.os }}
 
@@ -23,11 +23,8 @@ jobs:
           - "--prefer-lowest"
           - "--prefer-stable"
         php-version:
-          - "7.2"
-          - "7.3"
-          - "7.4"
-          - "8.0"
-        os: [ ubuntu-18.04 ]
+          - "8.1"
+        os: [ ubuntu-latest ]
 
     steps:
       - name: "Checkout"
@@ -38,8 +35,11 @@ jobs:
         with:
           php-version: "${{ matrix.php-version }}"
 
+      - name: "Lock config platform PHP"
+        run: "composer config platform.php 7.2"
+
       - name: "Install dependencies"
         run: "composer update ${{ matrix.dependencies-preference }}"
 
-      - name: "Run CI"
-        run: "composer run ci"
+      - name: "Run tests"
+        run: "composer run phpunit"
