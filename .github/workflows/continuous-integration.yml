@@ -27,7 +27,7 @@ jobs:
           - "7.3"
           - "7.4"
           - "8.0"
-        os: [ ubuntu-18.04 ]
+        os: [ ubuntu-20.04 ]
 
     steps:
       - name: "Checkout"
