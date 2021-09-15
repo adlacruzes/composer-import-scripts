@@ -27,7 +27,6 @@ jobs:
           - "7.3"
           - "7.4"
           - "8.0"
-          - "8.1"
         os: [ ubuntu-20.04 ]
 
     steps:
@@ -41,10 +40,6 @@ jobs:
 
       - name: "Install dependencies"
         run: "composer update ${{ matrix.dependencies-preference }}"
-
-      - name: "Ignore php-cs-fixer php requirement"
-        if: "matrix.php-version == '8.1'"
-        run: "export PHP_CS_FIXER_IGNORE_ENV=1"
 
       - name: "Run CI"
         run: "composer run ci"

@@ -24,6 +24,7 @@ jobs:
           - "--prefer-stable"
         experimental: [true]
         php-version:
+          - "8.1"
           - "nightly"
         os: [ ubuntu-latest ]
 
