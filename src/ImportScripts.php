@@ -104,7 +104,7 @@ class ImportScripts
                                 $this->parseScriptsToComposerFormat($json->read()['scripts'])
                             );
                         }
-                    } catch (ParsingException | JsonValidationException | RuntimeException $e) {
+                    } catch (ParsingException|JsonValidationException|RuntimeException $e) {
                         if (false === $allowFailures) {
                             throw $e;
                         }
