@@ -25,6 +25,7 @@ jobs:
           - "2.0.0"      # First v2 release
           - "2.1.0"      # Inversion strict/lax validation https://github.com/composer/composer/pull/9912
           - "2.1.1"      # Fix inversion strict/lax
+          - "2.1.7"      # Added many type annotations internally
         os: [ ubuntu-20.04 ]
 
     steps:
