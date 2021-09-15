@@ -20,11 +20,11 @@
     "require-dev": {
         "composer/composer": "^1.9 || ^2.0",
         "ergebnis/composer-normalize": "^2.15.0",
-        "friendsofphp/php-cs-fixer": "v2.19.1 || ^v3.0.2",
-        "phpstan/phpstan": "^0.12.94",
+        "friendsofphp/php-cs-fixer": "v2.19.2 || ^v3.1.0",
+        "phpstan/phpstan": "^0.12.99",
         "phpstan/phpstan-phpunit": "^0.12.22",
-        "phpstan/phpstan-strict-rules": "^0.12.10",
-        "phpunit/phpunit": "^8.5.16 || ^9.5.8"
+        "phpstan/phpstan-strict-rules": "^0.12.11",
+        "phpunit/phpunit": "^8.5.20 || ^9.5.9"
     },
     "config": {
         "optimize-autoloader": true,
