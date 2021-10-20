@@ -52,7 +52,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string, string|array{0: string, 1?: int}|array<array{0: string, 1?: int}>>
      */
     public static function getSubscribedEvents()
     {
