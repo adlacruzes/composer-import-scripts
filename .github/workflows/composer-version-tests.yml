@@ -28,6 +28,7 @@ jobs:
           - "2.1.1"      # Fix inversion strict/lax
           - "2.1.7"      # Added many type annotations internally
           - "2.1.10"     # Added type annotations to all classes
+          - "dev-main"
         os: [ ubuntu-20.04 ]
 
     steps:
