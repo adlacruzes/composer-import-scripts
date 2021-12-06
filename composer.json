@@ -1,13 +1,13 @@
 {
     "name": "adlacruzes/composer-import-scripts",
-    "type": "composer-plugin",
     "description": "Composer plugin to import composer scripts from sources",
+    "license": "MIT",
+    "type": "composer-plugin",
     "keywords": [
         "composer",
         "plugin",
         "scripts"
     ],
-    "license": "MIT",
     "authors": [
         {
             "name": "Andrés De la Cruz Escrig"
@@ -19,19 +19,12 @@
     },
     "require-dev": {
         "composer/composer": "^1.9 || ^2.0",
-        "ergebnis/composer-normalize": "^2.16.0",
+        "ergebnis/composer-normalize": "^2.17.0",
         "friendsofphp/php-cs-fixer": "v2.19.3 || v3.3.2",
         "phpstan/phpstan": "^1.2.0",
         "phpstan/phpstan-phpunit": "^1.0.0",
         "phpstan/phpstan-strict-rules": "^1.1.0",
         "phpunit/phpunit": "^8.5.21 || ^9.5.10"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "sort-packages": true
-    },
-    "extra": {
-        "class": "Adlacruzes\\Composer\\ImportScripts\\Plugin"
     },
     "autoload": {
         "psr-4": {
@@ -42,6 +35,13 @@
         "psr-4": {
             "Adlacruzes\\Composer\\ImportScripts\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "extra": {
+        "class": "Adlacruzes\\Composer\\ImportScripts\\Plugin"
     },
     "scripts": {
         "ci": [
