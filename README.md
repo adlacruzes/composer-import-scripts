@@ -28,6 +28,20 @@ Imported commands have to be invoked with `composer run`.
 composer require adlacruzes/composer-import-scripts
 ```
 
+As of Composer 2.2.0, the `allow-plugins` option adds a layer of security allowing you to restrict which Composer plugins are able to execute code during a Composer run.
+
+Use this setting to allow only packages you trust to execute code.
+
+```json
+{
+    "config": {
+        "allow-plugins": {
+            "adlacruzes/composer-import-scripts": true
+        }
+    }
+}
+```
+
 ## Usage
 
 ```json
