@@ -96,8 +96,12 @@ class ImportScripts
             if (is_array($extra['import-scripts']['include'])) {
                 foreach ($extra['import-scripts']['include'] as $include) {
                     try {
+                        if (false === is_file($include)) {
+                            throw new ParsingException($include . ' does not exist');
+                        }
+
                         $json = new JsonFile($include, $httpDownloader);
-                        if (true === @$json->validateSchema($this->getSchemaValidationCriteria(), __DIR__ . '/import-scripts-schema.json')) {
+                        if (true === $json->validateSchema($this->getSchemaValidationCriteria(), __DIR__ . '/import-scripts-schema.json')) {
                             $this->io->write("Importing script: $include", true, IOInterface::VERY_VERBOSE);
                             $scripts = array_merge(
                                 $scripts,
