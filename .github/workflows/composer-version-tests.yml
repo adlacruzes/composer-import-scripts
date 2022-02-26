@@ -21,13 +21,13 @@ jobs:
       matrix:
         composer-version:
           - "1.9.0"      # First v1 compatible release
-          - "1.10.22"
-          - "1.10.23"    # Last v1 release
+          - "1.10.25"    # Last v1 release
           - "2.0.0"      # First v2 release
           - "2.1.0"      # Inversion strict/lax validation https://github.com/composer/composer/pull/9912
           - "2.1.1"      # Fix inversion strict/lax
           - "2.1.7"      # Added many type annotations internally
           - "2.1.10"     # Added type annotations to all classes
+          - "2.2.0"      # First LTS version
           - "dev-main"
         os: [ ubuntu-20.04 ]
 
