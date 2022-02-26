@@ -19,17 +19,17 @@ use Seld\JsonLint\ParsingException;
 class ImportScriptsTest extends TestCase
 {
     /**
-     * @var Composer & MockObject
+     * @var Composer&MockObject
      */
     private $composer;
 
     /**
-     * @var IOInterface & MockObject
+     * @var IOInterface&MockObject
      */
     private $io;
 
     /**
-     * @var RootPackage & MockObject
+     * @var RootPackage&MockObject
      */
     private $package;
 
