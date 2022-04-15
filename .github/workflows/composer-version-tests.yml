@@ -28,6 +28,9 @@ jobs:
           - "2.1.7"      # Added many type annotations internally
           - "2.1.10"     # Added type annotations to all classes
           - "2.2.0"      # First LTS version
+          - "2.2.12"     # Last LTS version
+          - "2.3.0"      # First 2.3.x version
+          - "2.3.5"      # Last 2.3.x version
           - "dev-main"
         os: [ ubuntu-20.04 ]
 
