@@ -9,6 +9,7 @@ parameters:
     ignoreErrors:
             - "#^Call to function method_exists\\(\\) with Composer\\\\Package\\\\RootPackageInterface and 'setScripts' will always evaluate to true\\.$#"
             - "#^Call to function method_exists\\(\\) with Composer\\\\Package\\\\RootPackageInterface&PHPUnit\\\\Framework\\\\MockObject\\\\MockObject and 'setScripts' will always evaluate to true\\.$#"
+            - "#^Strict comparison using === between true and true will always evaluate to true\\.$#"
 includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon

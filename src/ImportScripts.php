@@ -167,6 +167,9 @@ class ImportScripts
         return new RemoteFilesystem($this->io, $this->composer->getConfig());
     }
 
+    /**
+     * @return JsonFile::STRICT_SCHEMA|JsonFile::LAX_SCHEMA
+     */
     private function getSchemaValidationCriteria(): int
     {
         // https://github.com/composer/composer/pull/9912
