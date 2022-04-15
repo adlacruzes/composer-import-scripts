@@ -21,7 +21,7 @@ jobs:
       matrix:
         composer-version:
           - "1.9.0"      # First v1 compatible release
-          - "1.10.25"    # Last v1 release
+          - "1.10.26"    # Last v1 release
           - "2.0.0"      # First v2 release
           - "2.1.0"      # Inversion strict/lax validation https://github.com/composer/composer/pull/9912
           - "2.1.1"      # Fix inversion strict/lax
