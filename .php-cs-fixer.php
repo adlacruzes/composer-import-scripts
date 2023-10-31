@@ -12,6 +12,7 @@ return (new PhpCsFixer\Config())
         'concat_space' => ['spacing' => 'one'],
         'declare_strict_types' => true,
         'fully_qualified_strict_types' => true,
+        'global_namespace_import' => true,
         'logical_operators' => true,
         'method_chaining_indentation' => true,
         'modernize_types_casting' => true,
