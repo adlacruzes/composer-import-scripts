@@ -34,7 +34,7 @@ jobs:
           - "2.4.0"      # First 2.4.x version
           - "2.4.2"      # Last 2.4.x version
           - "dev-main"
-        os: [ ubuntu-20.04 ]
+        os: [ ubuntu-22.04 ]
 
     steps:
       - name: "Checkout"
